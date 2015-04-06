@@ -17,4 +17,8 @@ public class User {
 	public String getName(){
 		return myName;
 	}
+	
+	public void addMessage(String msg){
+		myMsgs.add(msg);
+	}
 }
