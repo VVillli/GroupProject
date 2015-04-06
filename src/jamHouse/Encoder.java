@@ -23,7 +23,17 @@ public class Encoder {
 	}
 	private String encrypt(String o)
 	{
-		return o;
+		String s= "";
+		for(int i=0;i<o.length();i+=2)
+		{
+			String a= o.substring(i,i+1);
+			String b= o.substring(i+1,i+2);
+			s+=b;
+			s+=a;
+		}
+		if(o.length()%2==1)
+			s+=o.substring(o.length()-1,o.length());
+		return s;
 	}
 	public void write(String plaintext)
 	{
@@ -48,7 +58,7 @@ public class Encoder {
 		{
 			Scanner sc= new Scanner(f);
 			while(sc.hasNextLine()){
-				myList.add(sc.nextLine());
+				myList.add(encrypt(sc.nextLine()));
 			}
 		}
 		catch(FileNotFoundException e)
