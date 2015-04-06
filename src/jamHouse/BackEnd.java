@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class BackEnd {
 	private ArrayList<User> myUsers;
-	private Encoder myCode;
+	//private Encoder myCode;
 	
 	public BackEnd(){
 		myUsers = new ArrayList<User>();
-		myCode = new Encoder("githib.txt");
+		//myCode = new Encoder("githib.txt");
 	}
 	
 	public ArrayList<String> getMessages(String username){
@@ -24,14 +24,14 @@ public class BackEnd {
 		for(User n : myUsers){
 			if(n.getName().equalsIgnoreCase(username)){
 				n.addMessage(message);
-				myCode.write(username + ": " + message);
+				//myCode.write(username + ": " + message);
 				return;
 			}
 		}
 		User man = new User(username);
 		man.addMessage(message);
 		myUsers.add(man);
-		myCode.write(username + ": " + message);
+		//myCode.write(username + ": " + message);
 		return;
 	}
 	
