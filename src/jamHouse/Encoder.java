@@ -24,7 +24,7 @@ public class Encoder {
 	private String encrypt(String o)
 	{
 		String s= "";
-		for(int i=0;i<o.length();i+=2)
+		for(int i=0;i<o.length()-1;i+=2)
 		{
 			String a= o.substring(i,i+1);
 			String b= o.substring(i+1,i+2);
