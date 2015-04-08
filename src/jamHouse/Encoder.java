@@ -50,7 +50,7 @@ public class Encoder {
 			try {writer.close();}catch(Exception ex){}
 		}
 	}
-	public List<String> read()
+	public ArrayList<String> read()
 	{
 		ArrayList<String> myList= new ArrayList<String>();
 		File f= new File(file);
