@@ -14,12 +14,12 @@ import java.util.TreeMap;
 
 public class Encoder {
 	
-	String file;
+	File file;
 
 
 	public Encoder (String filename)
 	{
-		file= filename;
+		file= new File(filename);
 	}
 	private String encrypt(String o)
 	{
@@ -53,10 +53,9 @@ public class Encoder {
 	public ArrayList<String> read()
 	{
 		ArrayList<String> myList= new ArrayList<String>();
-		File f= new File(file);
 		try
 		{
-			Scanner sc= new Scanner(f);
+			Scanner sc= new Scanner(file);
 			while(sc.hasNextLine()){
 				myList.add(encrypt(sc.nextLine()));
 			}
