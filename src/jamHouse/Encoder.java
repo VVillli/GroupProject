@@ -41,9 +41,11 @@ public class Encoder {
 		Writer writer= null;
 		try{
 			writer= new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file),"utf-8"));
-			writer.write(s);
+			Scanner sc= new Scanner(file);
+			String content = sc.useDelimiter("\\Z").next();
+			writer.write(content+"\n"+ s);
 		}
-		catch(IOException ex){
+		catch(Exception ex){
 			
 		}
 		finally{
