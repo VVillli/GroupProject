@@ -1,5 +1,6 @@
 package jamHouse;
 
+import java.awt.List;
 import java.util.ArrayList;
 
 public class BackEnd {
@@ -25,6 +26,10 @@ public class BackEnd {
 			if(n.getName().equalsIgnoreCase(username)){
 				n.addMessage(message);
 				myCode.write(username + ": " + message);
+				ArrayList<String> x = myCode.read();
+				for(String s : x){
+					System.out.println(s);
+				}
 				return;
 			}
 		}
