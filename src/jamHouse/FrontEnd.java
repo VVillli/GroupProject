@@ -78,7 +78,6 @@ public class FrontEnd extends JFrame{
 						b.addMessage(currentUser, s);
 						newMessage.setText("");
 					}
-					
 					update();
 				}
 			}
