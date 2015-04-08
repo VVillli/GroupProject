@@ -39,7 +39,7 @@ public class Encoder {
 	}
 	public void write(String plaintext)
 	{
-		String s= encrypt(plaintext);
+		/*String s= encrypt(plaintext);
 		Writer writer= null;
 		try{
 			Scanner sc= new Scanner(file);
@@ -60,6 +60,18 @@ public class Encoder {
 		}
 		finally{
 			try {writer.close();}catch(Exception ex){}
+		}*/
+		String s= encrypt(plaintext);
+		Writer writer = null;
+
+		try {
+		    writer = new BufferedWriter(new OutputStreamWriter(
+		          new FileOutputStream(file.getName()), "utf-8"));
+		    writer.write(s);
+		    writer.write(System.lineSeparator());
+		} catch (IOException ex) {
+		} finally {
+		   try {writer.close();} catch (Exception ex) {}
 		}
 	}
 	public ArrayList<String> read()
