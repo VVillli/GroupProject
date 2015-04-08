@@ -45,6 +45,12 @@ public class MenuBar extends JMenuBar{
 			}
 		});
 		
+		close.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				f.dispose();
+			}
+		});
+		
 		this.add(file);
 	}
 }
