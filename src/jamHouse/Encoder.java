@@ -6,9 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -40,12 +42,20 @@ public class Encoder {
 		String s= encrypt(plaintext);
 		Writer writer= null;
 		try{
-			writer= new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file),"utf-8"));
 			Scanner sc= new Scanner(file);
 			String content = sc.useDelimiter("\\Z").next();
+			writer= new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(file.getName())),"utf-8"));
 			writer.write(content+"\n"+ s);
 		}
-		catch(Exception ex){
+		catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		catch (NoSuchElementException e)
+		{
 			
 		}
 		finally{
