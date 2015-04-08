@@ -3,15 +3,27 @@ package jamHouse;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 
 public class FrontEnd extends JFrame{
+	private BackEnd b = new BackEnd();
+	private String currentUser = "New User";
+	
+	private JTextArea msgs; 
+	
+	
 	public FrontEnd(){
 		super();
 		
@@ -24,7 +36,8 @@ public class FrontEnd extends JFrame{
 		
 		this.setJMenuBar(new MenuBar(this));
 		
-		JTextArea msgs = new JTextArea();
+		msgs = new JTextArea();
+		JScrollPane scroll = new JScrollPane(msgs);
 		JTextField newMessage = new JTextField();
 		JButton addMessage = new JButton("Send Message");
 		
@@ -35,7 +48,7 @@ public class FrontEnd extends JFrame{
 		
 		Box container = Box.createVerticalBox();
 		
-		container.add(msgs);
+		container.add(scroll);
 		container.add(bottom);
 		
 		this.add(container);
@@ -55,6 +68,38 @@ public class FrontEnd extends JFrame{
 		addMessage.setMinimumSize(new Dimension(150,30));
 		addMessage.setFocusPainted(false);
 		
+		//ActionListeners
+		
+		newMessage.addKeyListener(new KeyListener(){
+			public void keyPressed(KeyEvent arg0) {
+				if(arg0.getKeyCode() == KeyEvent.VK_ENTER){
+					String s = newMessage.getText();
+					if(!s.isEmpty()){
+						b.addMessage(currentUser, s);
+						newMessage.setText("");
+					}
+					
+					update();
+				}
+			}
+
+			public void keyReleased(KeyEvent arg0) {}
+
+			public void keyTyped(KeyEvent arg0) {}
+			
+		});
+		
+		addMessage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!newMessage.getText().isEmpty()){
+					b.addMessage(currentUser, newMessage.getText());
+					newMessage.setText("");
+				}
+				
+				update();
+			}
+		});
+		
 		//Packing
 		
 		this.pack();
@@ -69,5 +114,30 @@ public class FrontEnd extends JFrame{
 		this.setResizable(false);
 		this.setVisible(true);
 		
+	}
+	
+	public void update(){
+		ArrayList<String> tempUser = b.getUsers();
+		for(int i = 0; i < tempUser.size(); i++){
+			msgs.setText('\n' + "        " + tempUser.get(i) + ": \n");
+			ArrayList<String> tempMsgs = b.getMessages(tempUser.get(i));
+			for(int j = 0; j < tempMsgs.size(); j++){
+				msgs.setText(msgs.getText() + '\t' + tempMsgs.get(j) + '\n');
+			}
+		}
+	}
+	
+	public void setUser(String user){
+		currentUser = user;
+	}
+	
+	public String[] getUsers(){
+		String[] temp = new String[b.getUsers().size()];
+		
+		for(int i = 0; i < temp.length; i++){
+			temp[i] = b.getUsers().get(i);
+		}
+		
+		return temp;
 	}
 }
