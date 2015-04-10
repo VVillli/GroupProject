@@ -48,5 +48,8 @@ public class BackEnd {
 		return temp;
 	}
 	
-	
+	public void addUser(String user){
+		User x = new User(user);
+		myUsers.add(x);
+	}
 }
