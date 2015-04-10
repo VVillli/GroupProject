@@ -77,7 +77,8 @@ public class Encoder {
 			
 		}
 		finally{
-			try {writer.close();}catch(Exception ex){}
+			try {writer.close();}
+			catch(Exception ex){}
 		}
 		
 	}
