@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 bingus
+=======
+
+>>>>>>> origin/master
 iWll :aKeniki  sABE
 oTmm:yr fo lk
 aDiv:dw li lsid mub
