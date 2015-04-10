@@ -22,7 +22,7 @@ public class Encoder {
 	public Encoder (String filename)
 	{
 		file= new File(filename);
-		/*Writer writer= null;
+		Writer writer= null;
 		try{
 		writer= new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(file.getName())),"utf-8"));
 		writer.write("");
@@ -34,7 +34,7 @@ public class Encoder {
 		finally{
 			try {writer.close();}catch(Exception ex){}
 		}
-		*/
+		
 	}
 	private String encrypt(String o)
 	{
@@ -55,9 +55,16 @@ public class Encoder {
 		String s= encrypt(plaintext);
 		Writer writer= null;
 		try{
+			String content="";
+			try{
 			Scanner sc= new Scanner(file);
-			String content = sc.useDelimiter("\\Z").next();
+			content = sc.useDelimiter("\\Z").next();
 			sc.close();
+			}
+			catch (Exception e)
+			{
+				
+			}
 			writer= new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(file.getName())),"utf-8"));
 			writer.write(content+"\n"+ s);
 		}
