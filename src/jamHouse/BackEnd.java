@@ -37,6 +37,10 @@ public class BackEnd {
 		man.addMessage(message);
 		myUsers.add(man);
 		myCode.write(username + ": " + message);
+		ArrayList<String> x = myCode.read();
+		for(String s : x){
+			System.out.println(s);
+		}
 		return;
 	}
 	
@@ -48,5 +52,9 @@ public class BackEnd {
 		return temp;
 	}
 	
+	public void addUser(String user){
+		User x = new User(user);
+		myUsers.add(x);
+	}
 	
 }
