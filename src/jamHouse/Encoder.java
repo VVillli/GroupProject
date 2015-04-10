@@ -39,11 +39,12 @@ public class Encoder {
 	}
 	public void write(String plaintext)
 	{
-		/*String s= encrypt(plaintext);
+		String s= encrypt(plaintext);
 		Writer writer= null;
 		try{
 			Scanner sc= new Scanner(file);
 			String content = sc.useDelimiter("\\Z").next();
+			sc.close();
 			writer= new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(file.getName())),"utf-8"));
 			writer.write(content+"\n"+ s);
 		}
@@ -58,21 +59,14 @@ public class Encoder {
 		{
 			
 		}
+		catch (Exception e)
+		{
+			
+		}
 		finally{
 			try {writer.close();}catch(Exception ex){}
-		}*/
-		String s= encrypt(plaintext);
-		Writer writer = null;
-
-		try {
-		    writer = new BufferedWriter(new OutputStreamWriter(
-		          new FileOutputStream(file.getName()), "utf-8"));
-		    writer.write(s);
-		    writer.write(System.lineSeparator());
-		} catch (IOException ex) {
-		} finally {
-		   try {writer.close();} catch (Exception ex) {}
 		}
+		
 	}
 	public ArrayList<String> read()
 	{
