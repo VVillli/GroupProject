@@ -9,7 +9,7 @@ public class BackEnd {
 	
 	public BackEnd(){
 		myUsers = new ArrayList<User>();
-		myCode = new Encoder("github.txt");
+		myCode = new Encoder("archive.txt");
 	}
 	
 	public ArrayList<String> getMessages(String username){
