@@ -10,7 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 public class MenuBar extends JMenuBar{
-	JFrame f;
+	FrontEnd f;
 	
 	public MenuBar(FrontEnd f){
 		super();
@@ -32,16 +32,18 @@ public class MenuBar extends JMenuBar{
 			public void actionPerformed(ActionEvent e) {
 				if(f.getUsers().length > 0){
 					String[] temp = f.getUsers();
-					String blah = (String)JOptionPane.showInputDialog(f, "Choose User", "Change User", JOptionPane.QUESTION_MESSAGE, null, temp, temp[0]);
+					String blah = (String) JOptionPane.showInputDialog(f, "Choose User", "Change User", JOptionPane.QUESTION_MESSAGE, null, temp, temp[0]);
 					f.setUser(blah);
+					f.update();
 				}
 			}
 		});
 		
 		addUser.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				String x = JOptionPane.showInputDialog(f, "USER");
+				String x = JOptionPane.showInputDialog(f, "New User: ");
 				f.setUser(x);
+				f.getBack().addUser(x);
 			}
 		});
 		

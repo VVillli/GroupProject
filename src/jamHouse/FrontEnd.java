@@ -116,13 +116,10 @@ public class FrontEnd extends JFrame{
 	}
 	
 	public void update(){
-		ArrayList<String> tempUser = b.getUsers();
-		for(int i = 0; i < tempUser.size(); i++){
-			msgs.setText('\n' + "        " + tempUser.get(i) + ": \n");
-			ArrayList<String> tempMsgs = b.getMessages(tempUser.get(i));
-			for(int j = 0; j < tempMsgs.size(); j++){
-				msgs.setText(msgs.getText() + '\t' + tempMsgs.get(j) + '\n');
-			}
+		msgs.setText('\n' + "        " + currentUser + ": \n");
+		ArrayList<String> tempMsgs = b.getMessages(currentUser);
+		for(int j = 0; j < tempMsgs.size(); j++){
+			msgs.setText(msgs.getText() + '\t' + tempMsgs.get(j) + '\n');
 		}
 	}
 	
@@ -138,5 +135,9 @@ public class FrontEnd extends JFrame{
 		}
 		
 		return temp;
+	}
+	
+	public BackEnd getBack(){
+		return b;
 	}
 }
